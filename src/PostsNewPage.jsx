@@ -15,13 +15,13 @@ export function PostsNewPage() {
 
   return (
     <>
+      <h1>New Post</h1>
       <form onSubmit={handleSubmit}>
       Title: <input type="text" name="title" /><br />
       Body: <input type="text" name="body" /><br />
       Image: <input type="text" name="image" /><br />
       <button type="submit">Submit</button>
       </form>
-        
     </>
   );
 }

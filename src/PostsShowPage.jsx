@@ -1,4 +1,3 @@
-import {PostsShow} from "./PostsShow"
 import {useLoaderData} from "react-router-dom";
 
 export function PostsShowPage() {
@@ -7,7 +6,9 @@ export function PostsShowPage() {
 
   return (
     <div>
-      <PostsShow  post={post}/>
+      <h2>Title: {post.title}</h2>
+      <p>{post.body}</p>
+      <img src={post.image} />
     </div>
   );
 }

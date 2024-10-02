@@ -2,7 +2,6 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import axios from 'axios'
 
 import { Header } from "./Header";
-import { PostsPage } from "./PostsPage";
 import { SignupPage } from "./SignupPage";
 import { LoginPage } from "./LoginPage";
 import { Footer } from "./Footer";
@@ -22,7 +21,9 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <PostsPage />,
+        element: <PostsIndexPage />,
+        loader: () =>
+          axios.get("http://localhost:3000/posts.json").then(response => response.data)
       },
       {
         path: "/signup",

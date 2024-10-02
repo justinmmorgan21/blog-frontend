@@ -1,24 +1,14 @@
 import {useLoaderData, useNavigate} from 'react-router-dom';
-import {useState} from 'react'
-import {Modal} from './Modal.jsx'
-import {PostsShowPage} from './PostsShowPage.jsx'
 
 export function PostsIndexPage() {
 
   const posts = useLoaderData();
   const navigate = useNavigate();
 
-  // const [isPostsShowVisible, setIsPostsShowVisible] = useState(false);
-  // const [currentPost, setcurrentPost] = useState({});
-
   const handleShow = post => {
     console.log("SHOW");
     navigate(`/posts/${post.id}`);
   };
-
-  // const handleClose = () => {
-  //   setIsPostsShowVisible(false);
-  // };
 
   return (
     <div id="posts-index">
@@ -35,9 +25,6 @@ export function PostsIndexPage() {
         ))
       }
       </div>
-      {/* <Modal show={isPostsShowVisible} onClose={handleClose}>
-        <PostsShowPage post={post} />
-      </Modal> */}
     </div>
   );
 }
