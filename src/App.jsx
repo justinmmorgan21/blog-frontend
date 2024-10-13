@@ -9,7 +9,9 @@ import { PostsNewPage } from "./PostsNewPage";
 import { PostsIndexPage } from "./PostsIndexPage";
 import { PostsShowPage } from "./PostsShowPage";
 import { LogoutLink } from "./LogoutLink";
+import { Rating } from '@smastrom/react-rating'
 
+import '@smastrom/react-rating/style.css'
 const router = createBrowserRouter([
   {
     element: (
