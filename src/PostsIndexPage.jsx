@@ -8,6 +8,11 @@ export function PostsIndexPage() {
 
   const [searchTerms ,setSearchTerms] = useState("");
 
+  const searchFilter = post => {
+     return (
+      post.title.toLowerCase().includes(searchTerms.toLowerCase())
+     )
+  }
 
   const handleShow = post => {
     console.log("SHOW");
@@ -19,7 +24,7 @@ export function PostsIndexPage() {
       <h1>All posts</h1>
       <input type="text" name="search" id="search" value={searchTerms} onChange={(event)=>setSearchTerms(event.target.value)}/>
       <div className="row ">
-      {posts.filter(post=>post.title.toLowerCase().includes(searchTerms.toLowerCase())).map(post => (
+      {posts.filter(searchFilter).map(post => (
         <div key={post.id} className="card col-sm-3 mb-3 mb-sm-0 m-3" >
           <img src={post.image} className="card-img-top " alt="..." />
           <div className="card-body">

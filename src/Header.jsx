@@ -1,28 +1,47 @@
 import { Link } from "react-router-dom";
 import { LogoutLink } from "./LogoutLink";
+import { useState, useEffect } from 'react';
+import axios from 'axios'
 
 export function Header() {
+  const [currentUser, setCurrentUser] = useState({});
+
+  const loadUserData = () => {
+    axios.get("http://localhost:3000/users/current.json").then(response=> {
+      console.log(response.data);
+      setCurrentUser(response.data);
+    }
+    )
+  }
+
+  useEffect(loadUserData, []);
 
   let authLinks;
+  let welcomeMessage;
   if (localStorage.jwt === undefined) {
     console.log("logged out")
     authLinks = (
       <>
       <li>
-      <Link to="signup">Sign up</Link>
-          </li>
-          <li>
-          <Link to="login">Log in</Link>
-          </li>
+        <Link to="signup">Sign up</Link>
+      </li>
+      <li>
+        <Link to="login">Log in</Link>
+      </li>
       </>
     )
+    welcomeMessage = <></>
   } else {
     console.log("logged in")
     authLinks = (
                 <li>
                   <LogoutLink />
                 </li>
-
+    )
+    welcomeMessage = (
+      <>
+      Welcome, {currentUser.name}
+      </>
     )
   }
 
@@ -52,6 +71,7 @@ export function Header() {
                 <a className="nav-link" href="#">Pricing</a>
               </li>
               {authLinks}
+              {welcomeMessage}
             </ul>
             {/* <!-- Button to trigger the offcanvas --> */}
             <button className="btn " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">

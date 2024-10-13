@@ -26,6 +26,8 @@ export function SignupPage() {
     return name.length > 0 && name.length < 20 ? 20 - name.length + " characters remaining" : "";
   }
 
+  
+
   return (
     <div id="signup">
       <h1>Signup</h1>
