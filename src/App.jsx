@@ -8,11 +8,12 @@ import { Footer } from "./Footer";
 import { PostsNewPage } from "./PostsNewPage";
 import { PostsIndexPage } from "./PostsIndexPage";
 import { PostsShowPage } from "./PostsShowPage";
+import { LogoutLink } from "./LogoutLink";
 
 const router = createBrowserRouter([
   {
     element: (
-      <div>
+      <div className="container">
         <Header />
         <Outlet />
         <Footer />
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <LoginPage />,
+      },
+      {
+        path: "/logout",
+        element: <LogoutLink />
       },
       {
         path: "/posts/new",

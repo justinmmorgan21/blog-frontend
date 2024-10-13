@@ -1,9 +1,13 @@
-import {useLoaderData, useNavigate} from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
+import { useState } from 'react'
 
 export function PostsIndexPage() {
 
   const posts = useLoaderData();
   const navigate = useNavigate();
+
+  const [searchTerms ,setSearchTerms] = useState("");
+
 
   const handleShow = post => {
     console.log("SHOW");
@@ -13,17 +17,19 @@ export function PostsIndexPage() {
   return (
     <div id="posts-index">
       <h1>All posts</h1>
-      <div className="cards">
-      {
-        posts.map(post => (
-          <div className="card" key={post.id}>
-          <h3 className="title">{post.title}</h3>
-          <p>{post.body}</p>
-          <img src={post.image} />
-          <button onClick={()=>handleShow(post)}>More Info</button>
+      <input type="text" name="search" id="search" value={searchTerms} onChange={(event)=>setSearchTerms(event.target.value)}/>
+      <div className="row ">
+      {posts.filter(post=>post.title.toLowerCase().includes(searchTerms.toLowerCase())).map(post => (
+        <div key={post.id} className="card col-sm-3 mb-3 mb-sm-0 m-3" >
+          <img src={post.image} className="card-img-top " alt="..." />
+          <div className="card-body">
+            <h5 className="card-title">{post.title}</h5>
+            <p className="card-text">{post.body}</p>
+            <a href="#" className="btn btn-primary">More info</a>
+                 {/* <button onClick={()=>handleShow(post)}>More Info</button> */}
+          </div>
         </div>
-        ))
-      }
+      ))}
       </div>
     </div>
   );
