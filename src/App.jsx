@@ -9,7 +9,7 @@ import { PostsNewPage } from "./PostsNewPage";
 import { PostsIndexPage } from "./PostsIndexPage";
 import { PostsShowPage } from "./PostsShowPage";
 import { LogoutLink } from "./LogoutLink";
-import { Rating } from '@smastrom/react-rating'
+import { Contact } from "./Contact";
 
 import '@smastrom/react-rating/style.css'
 const router = createBrowserRouter([
@@ -54,6 +54,10 @@ const router = createBrowserRouter([
         path: "/posts/:id",
         element: <PostsShowPage />,
         loader: ({ params }) => axios.get(`http://localhost:3000/posts/${params.id}.json`).then(response => response.data)
+      },
+      {
+        path: "/contact",
+        element: <Contact />
       }
     ],
   },
